@@ -2,22 +2,37 @@ import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { getComics } from './services/fetch';
+import { type } from 'os';
 
+type Comics = {
+    alt: string;
+    day: string;
+    img: string;
+    link: string;
+    month: string;
+    news: string;
+    num: number;
+    safeTitle: string;
+    title: string;
+    transcript: string;
+    year: string;
+};
 function App() {
     // console.log('app work');
-    // const [comics, setComics] = useState({});
+    const [comics, setComics] = useState({});
     useEffect(() => {
-        console.log('effect work');
-        const result = getComics();
-        console.log(result);
-        // setComics(result);
+        getComics().then((result) => {
+            // let resultComics: Comics = JSON.parse(result);
+            // console.log(resultComics.alt);
+            // setComics(resultComics);
+            setComics(result);
+        });
     });
-    // console.log(comics);
+    // const test : Comics = JSON.parse(comics);
+    console.log(comics);
+    // console.log(comics.alt);
 
-    // getComics();
-    // console.log(getComics());
-
-    return <div></div>;
+    return <div>{/* <p>{comics.num}</p> */}</div>;
 }
 
 export default App;
