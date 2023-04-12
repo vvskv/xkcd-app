@@ -7,8 +7,11 @@ export async function getComics() {
     if (responce.ok) {
         const comics = await responce.json();
         return comics;
+    } else {
+        const errMessage = `Error: ${responce.status}`;
+        throw new Error(errMessage);
     }
     // console.log(comics);
 
-    return comics;
+    // return comics;
 }
