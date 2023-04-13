@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { getComics } from './services/fetch';
+import { getComics, Comics } from './services/fetch';
+import Header from './Components/Header';
 
 function App() {
-    const [comics, setComics] = useState({});
+    let title: string = '';
+    let img: string = '';
+
+    const [comics, setComics] = useState<Comics | null>(null);
+    const [loading, setLoading] = useState(false);
     useEffect(() => {
         getComics().then((result) => {
-            // let resultComics: Comics = JSON.parse(result);
-            // console.log(resultComics.alt);
-            // setComics(resultComics);
-            console.log(result.img);
-
             setComics(result);
         });
     }, []);
-    // const test : Comics = <Comics>result;
-    // const test = JSON.parse(comics);
-    // const test = JSON.stringify(comics);
-    // const test2 : Comics = JSON.parse(test);
-    // console.log(JSON.stringify(test2));
-    // console.log(comics.alt);
+    if (comics) {
+        title = comics.title;
+        img = comics.img;
+    }
 
-    return <div></div>;
+    return (
+        <div>
+            <Header />
+            <h1>{title}</h1>
+            <img src={img} alt="" />
+        </div>
+    );
 }
 
 export default App;
