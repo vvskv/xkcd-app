@@ -4,19 +4,6 @@ import './App.css';
 import { getComics } from './services/fetch';
 import { type } from 'os';
 
-// interface Comics {
-//     alt: string;
-//     day: string;
-//     img: string;
-//     link: string;
-//     month: string;
-//     news: string;
-//     num: number;
-//     safeTitle: string;
-//     title: string;
-//     transcript: string;
-//     year: string;
-// }
 function App() {
     const [comics, setComics] = useState({});
     useEffect(() => {
