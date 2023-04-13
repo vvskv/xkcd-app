@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { getComics } from './services/fetch';
-import { type } from 'os';
 
 function App() {
     const [comics, setComics] = useState({});
@@ -23,7 +21,7 @@ function App() {
     // console.log(JSON.stringify(test2));
     // console.log(comics.alt);
 
-    return <div>{/* <p>{comics.num}</p> */}</div>;
+    return <div></div>;
 }
 
 export default App;
