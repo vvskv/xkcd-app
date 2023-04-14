@@ -1,19 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { getComics, Comics } from './services/fetch';
+import { getComicsRequest, Comics } from './services/fetch';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 
 function App() {
+    function getComics(req?: string) {
+        getComicsRequest(req).then((result) => {
+            setComics(result);
+        });
+    }
+
+    const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        getComics('random');
+    };
+
     let title: string = '';
     let img: string = '';
 
     const [comics, setComics] = useState<Comics | null>(null);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        getComics().then((result) => {
-            setComics(result);
-        });
+        getComics();
+        // getComicsRequest('random').then((result) => {
+        //     setComics(result);
+        // });
     }, []);
     if (comics) {
         title = comics.title;
@@ -25,6 +37,7 @@ function App() {
             <Header />
             <h1>{title}</h1>
             <img src={img} alt="" />
+            <button onClick={getRandomComics}>Random</button>
             <Footer />
         </div>
     );

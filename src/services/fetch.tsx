@@ -14,25 +14,24 @@ export interface Comics {
     year: string;
 }
 
-export type TRequest = {
-    value: string;
-};
-let curComicsId: number = 2762;
+let maxComicsId: number;
+let curComicsId: number;
 
-export async function getComics(req ?: TRequest): Promise<Comics> {
-    const baseUrl = 'https://xkcd.com/';
-    if(req) {
-        if(req.value === 'random'){
-
+export async function getComicsRequest(req?: string): Promise<Comics> {
+    let url = 'https://xkcd.com/';
+    if (req) {
+        if (req === 'random') {
+            url += 123 + '/info.0.json';
         }
     } else {
-        
+        url += '/info.0.json';
     }
-    
-    // const url = 'https://xkcd.com/614/info.0.json';
-    const responce = await fetch(baseUrl + curComicsId + '/info.0.json');
+
+    const responce = await fetch(url);
     if (responce.ok) {
         const comics = (await responce.json()) as Comics;
+        if (!maxComicsId) maxComicsId = comics.num;
+        curComicsId = comics.num;
         return comics;
     } else {
         const errMessage = `Error: ${responce.status}`;
