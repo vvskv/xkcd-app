@@ -21,7 +21,12 @@ export async function getComicsRequest(req?: string): Promise<Comics> {
     let url = 'https://xkcd.com/';
     if (req) {
         if (req === 'random') {
-            url += 123 + '/info.0.json';
+            const num = Math.ceil(Math.random() * maxComicsId);
+            url += num + '/info.0.json';
+        }
+        if (req === 'next') {
+            const num = curComicsId + 1;
+            url += num + '/info.0.json';
         }
     } else {
         url += '/info.0.json';

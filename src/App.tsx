@@ -15,6 +15,10 @@ function App() {
         e.preventDefault();
         getComics('random');
     };
+    const getNextComics = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        getComics('next');
+    };
 
     let title: string = '';
     let img: string = '';
@@ -38,6 +42,7 @@ function App() {
             <h1>{title}</h1>
             <img src={img} alt="" />
             <button onClick={getRandomComics}>Random</button>
+            <button onClick={getNextComics}>Next</button>
             <Footer />
         </div>
     );
