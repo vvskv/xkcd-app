@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import { getComics, Comics } from './services/fetch';
 import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 function App() {
     let title: string = '';
@@ -24,6 +25,7 @@ function App() {
             <Header />
             <h1>{title}</h1>
             <img src={img} alt="" />
+            <Footer />
         </div>
     );
 }
