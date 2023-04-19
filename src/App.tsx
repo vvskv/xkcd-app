@@ -39,6 +39,7 @@ function App() {
     return (
         <div>
             <Header />
+            <div></div>
             <h1>{title}</h1>
             <img src={img} alt="" />
             <button onClick={getRandomComics}>Random</button>
