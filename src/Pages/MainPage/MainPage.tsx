@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     getComicsIsLoading,
@@ -14,32 +14,29 @@ export default function MainPage() {
     const isSuccess = useSelector(getComicsIsSuccess);
     const isError = useSelector(getComicsisError);
     const isLoading = useSelector(getComicsIsLoading);
-
-    // interface IComics {
-    //     alt: string;
-    //     day: string;
-    //     img: string;
-    //     link: string;
-    //     month: string;
-    //     news: string;
-    //     num: number;
-    //     safeTitle: string;
-    //     title: string;
-    //     transcript: string;
-    //     year: string;
-    // }
+    const [curComics, setCurComics] = useState('');
+    console.log(curComics);
     useEffect(() => {
-        dispatch(getComics(''));
+        console.log('First dispatch');
+        dispatch(getComics(curComics));
     }, []);
+
+    const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        setCurComics('100');
+        // dispatch(getComics('100'));
+    };
 
     return (
         <>
+            <p>MainPage</p>
             {isError && <span>Error</span>}
             {isLoading && <span>Loading...</span>}
             {isSuccess && comics && (
                 <div>
                     <p>{comics.title}</p>
                     <img src={comics.img} alt="" />
+                    <button onClick={getRandomComics}>Random</button>
                 </div>
             )}
         </>

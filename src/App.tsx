@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import { getComicsRequest, Comics } from './services/fetch';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import { useDispatch, useSelector } from 'react-redux';
-import { getComics } from './store/comics/request';
-import {
-    getComicsIsLoading,
-    getComicsIsSuccess,
-    getComicsSelector,
-    getComicsisError,
-} from './store/comics/selector';
+import { Routes, Route } from 'react-router-dom';
+import styles from './App.module.scss';
+import { Layout } from './Components/Layout/Layout';
+import { routes } from './utils/routes';
+import MainPage from './Pages/MainPage/MainPage';
+import Translator from './Pages/Translator/Translator';
+import Favorite from './Pages/Favorite/Favorite';
 
 function App() {
     // function getComics(req?: string) {
@@ -51,41 +46,40 @@ function App() {
     //         <Footer />
     //     </div>
     // );
-    const dispatch = useDispatch();
-    const comics = useSelector(getComicsSelector);
-    const isSuccess = useSelector(getComicsIsSuccess);
-    const isError = useSelector(getComicsisError);
-    const isLoading = useSelector(getComicsIsLoading);
+    // const dispatch = useDispatch();
+    // const comics = useSelector(getComicsSelector);
+    // const isSuccess = useSelector(getComicsIsSuccess);
+    // const isError = useSelector(getComicsisError);
+    // const isLoading = useSelector(getComicsIsLoading);
 
-    interface IComics {
-        alt: string;
-        day: string;
-        img: string;
-        link: string;
-        month: string;
-        news: string;
-        num: number;
-        safeTitle: string;
-        title: string;
-        transcript: string;
-        year: string;
-    }
-    useEffect(() => {
-        dispatch(getComics(''));
-    }, []);
-    console.log(comics);
+    // interface IComics {
+    //     alt: string;
+    //     day: string;
+    //     img: string;
+    //     link: string;
+    //     month: string;
+    //     news: string;
+    //     num: number;
+    //     safeTitle: string;
+    //     title: string;
+    //     transcript: string;
+    //     year: string;
+    // }
+    // useEffect(() => {
+    //     dispatch(getComics(''));
+    // }, []);
+    // console.log(comics);
 
     return (
-        <>
-            {isError && <span>Error</span>}
-            {isLoading && <span>Loading...</span>}
-            {isSuccess && comics && (
-                <div>
-                    <p>{comics.title}</p>
-                    <img src={comics.img} alt="" />
-                </div>
-            )}
-        </>
+        <div className={styles.wrapper}>
+            <Layout>
+                <Routes>
+                    <Route path={routes.MAIN} element={<MainPage />} />
+                    <Route path={routes.TRANSLATOR} element={<Translator />} />
+                    <Route path={routes.FAVORITE} element={<Favorite />} />
+                </Routes>
+            </Layout>
+        </div>
     );
 }
 
