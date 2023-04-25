@@ -6,7 +6,7 @@ import {
     getComicsSelector,
     getComicsIsError,
 } from '../../store/comics/selector';
-import { getComics } from '../../store/comics/request';
+import { comicsId, getComics } from '../../store/comics/request';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -14,20 +14,28 @@ export default function MainPage() {
     const isSuccess = useSelector(getComicsIsSuccess);
     const isError = useSelector(getComicsIsError);
     const isLoading = useSelector(getComicsIsLoading);
-    let currentComics = '';
+    // let currentComics = comicsId.Last;
 
-    // console.log(curComics);
     useEffect(() => {
-        currentComics = JSON.parse(window.localStorage.getItem('number') || '');
+        // if (window.localStorage.getItem('curComics')) {
+        //     currentComics = JSON.parse(window.localStorage.getItem('curComics') || '');
+        // }
         console.log('First dispatch');
-        dispatch(getComics(currentComics));
+        // dispatch(getComics(currentComics));
+        dispatch(getComics(comicsId.Current));
     }, []);
 
     const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        currentComics = '100';
-        window.localStorage.setItem('number', JSON.stringify(currentComics));
-        dispatch(getComics(currentComics));
+        dispatch(getComics(comicsId.Random));
+    };
+    const getNextComics = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        dispatch(getComics(comicsId.Next));
+    };
+    const getPrevComics = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        dispatch(getComics(comicsId.Prev));
     };
 
     return (
@@ -40,6 +48,8 @@ export default function MainPage() {
                     <p>{comics.title}</p>
                     <img src={comics.img} alt="" />
                     <button onClick={getRandomComics}>Random</button>
+                    <button onClick={getNextComics}>Next</button>
+                    <button onClick={getPrevComics}>Prev</button>
                 </div>
             )}
         </>

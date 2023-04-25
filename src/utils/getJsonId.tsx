@@ -1,6 +1,3 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { networkInstance } from '../../network';
-
 export enum comicsId {
     Random = 'RANDOM',
     Prev = 'PREV',
@@ -11,7 +8,7 @@ export enum comicsId {
 let maxCount = 0;
 let currentComics = 0;
 
-export const getComics = createAsyncThunk('/comics', async (id: comicsId, { rejectWithValue }) => {
+export default function getJsonId(id: comicsId) {
     let jsonId: string;
     switch (id) {
         case comicsId.Random:
@@ -27,17 +24,5 @@ export const getComics = createAsyncThunk('/comics', async (id: comicsId, { reje
             jsonId = !currentComics ? '' : String(currentComics);
             break;
     }
-
-    try {
-        const responce = await networkInstance.get(`${jsonId}/info.0.json`);
-        if (maxCount === 0 && id === comicsId.Current) {
-            maxCount = responce.data.num;
-        } else {
-            maxCount = 2767;
-        }
-        currentComics = responce.data.num;
-        return responce.data;
-    } catch (error) {
-        return rejectWithValue(error);
-    }
-});
+    return jsonId;
+}
