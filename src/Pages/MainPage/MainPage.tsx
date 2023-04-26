@@ -6,7 +6,8 @@ import {
     getComicsSelector,
     getComicsIsError,
 } from '../../store/comics/selector';
-import { comicsId, getComics } from '../../store/comics/request';
+import { getComics } from '../../store/comics/request';
+import getJsonId, { comicsRequest, statusRequest } from '../../utils/getJsonId';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -17,25 +18,24 @@ export default function MainPage() {
     // let currentComics = comicsId.Last;
 
     useEffect(() => {
-        // if (window.localStorage.getItem('curComics')) {
-        //     currentComics = JSON.parse(window.localStorage.getItem('curComics') || '');
-        // }
         console.log('First dispatch');
         // dispatch(getComics(currentComics));
-        dispatch(getComics(comicsId.Current));
+        dispatch(getComics(getJsonId(comicsRequest.Current)));
     }, []);
 
     const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        dispatch(getComics(comicsId.Random));
+        dispatch(getComics(getJsonId(comicsRequest.Random)));
     };
     const getNextComics = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        dispatch(getComics(comicsId.Next));
+        const jsonId = getJsonId(comicsRequest.Next);
+        if (statusRequest) dispatch(getComics(jsonId));
     };
     const getPrevComics = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        dispatch(getComics(comicsId.Prev));
+        const jsonId = getJsonId(comicsRequest.Prev);
+        if (statusRequest) dispatch(getComics(jsonId));
     };
 
     return (

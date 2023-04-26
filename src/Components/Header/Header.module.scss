@@ -1,6 +1,13 @@
 .header{
+    height: 50px;
+    padding: 5%;
     .menu {
         display: flex;
         justify-content: space-between;
+        .link {
+            border: 1px solid black;
+            padding: 1em 3em;
+            text-decoration: none;
+        }
     }
 }

@@ -1,27 +1,52 @@
-export enum comicsId {
+export enum comicsRequest {
     Random = 'RANDOM',
     Prev = 'PREV',
     Next = 'NEXT',
     Current = 'CURRENT',
 }
 
-let maxCount = 0;
-let currentComics = 0;
+export let maxId = 0;
+export let currentComics = 0;
+export let statusRequest = true;
 
-export default function getJsonId(id: comicsId) {
+export function setMaxId(id: number) {
+    maxId = id;
+}
+export function setCurrentComics(id: number) {
+    currentComics = id;
+}
+
+export default function getJsonId(req: comicsRequest) {
     let jsonId: string;
-    switch (id) {
-        case comicsId.Random:
-            jsonId = String(Math.ceil(Math.random() * maxCount));
+    switch (req) {
+        case comicsRequest.Random:
+            currentComics = Math.ceil(Math.random() * maxId);
+            jsonId = String(currentComics);
+            statusRequest = true;
             break;
-        case comicsId.Prev:
-            jsonId = String(currentComics - 1);
+        case comicsRequest.Prev:
+            if (currentComics === 1) {
+                jsonId = String(currentComics);
+                statusRequest = false;
+            } else {
+                currentComics -= 1;
+                jsonId = String(currentComics);
+                statusRequest = true;
+            }
             break;
-        case comicsId.Next:
-            jsonId = String(currentComics + 1);
+        case comicsRequest.Next:
+            if (currentComics === maxId) {
+                jsonId = String(currentComics);
+                statusRequest = false;
+            } else {
+                currentComics += 1;
+                jsonId = String(currentComics);
+                statusRequest = true;
+            }
             break;
-        case comicsId.Current:
+        case comicsRequest.Current:
             jsonId = !currentComics ? '' : String(currentComics);
+            statusRequest = true;
             break;
     }
     return jsonId;
