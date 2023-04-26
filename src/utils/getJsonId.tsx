@@ -15,7 +15,7 @@ export function setMaxId(id: number) {
 export function setCurrentComics(id: number) {
     currentComics = id;
 }
-
+// add current id comics to local storage
 export default function getJsonId(req: comicsRequest) {
     let jsonId: string;
     switch (req) {

@@ -1,12 +1,15 @@
 .header{
-    height: 50px;
-    padding: 5%;
+    // height: 50px;
+    // padding: 5%;
+    padding: 1em;
+    border-bottom: 2px solid #000;
     .menu {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         .link {
-            border: 1px solid black;
-            padding: 1em 3em;
+            color: #000;
+            border: 2px solid black;
+            padding: 1em 5em;
             text-decoration: none;
         }
     }

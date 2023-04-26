@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-// import styles from './Layout.module.scss';
+import styles from './Layout.module.scss';
 
 interface TProps {
     children: JSX.Element;
@@ -9,9 +9,9 @@ interface TProps {
 
 export const Layout = ({ children }: TProps) => {
     return (
-        <div>
+        <div className={styles.layout}>
             <Header />
-            <div>{children}</div>
+            <div className={styles.content}>{children}</div>
             <Footer />
         </div>
     );

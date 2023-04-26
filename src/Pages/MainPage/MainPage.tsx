@@ -8,6 +8,7 @@ import {
 } from '../../store/comics/selector';
 import { getComics } from '../../store/comics/request';
 import getJsonId, { comicsRequest, statusRequest } from '../../utils/getJsonId';
+import styles from './MainPage.module.scss';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -15,11 +16,9 @@ export default function MainPage() {
     const isSuccess = useSelector(getComicsIsSuccess);
     const isError = useSelector(getComicsIsError);
     const isLoading = useSelector(getComicsIsLoading);
-    // let currentComics = comicsId.Last;
 
     useEffect(() => {
         console.log('First dispatch');
-        // dispatch(getComics(currentComics));
         dispatch(getComics(getJsonId(comicsRequest.Current)));
     }, []);
 
@@ -40,16 +39,17 @@ export default function MainPage() {
 
     return (
         <>
-            <p>MainPage</p>
             {isError && <span>Error</span>}
             {isLoading && <span>Loading...</span>}
             {isSuccess && comics && (
-                <div>
-                    <p>{comics.title}</p>
+                <div className={styles.content}>
+                    <h1>{comics.title}</h1>
                     <img src={comics.img} alt="" />
-                    <button onClick={getRandomComics}>Random</button>
-                    <button onClick={getNextComics}>Next</button>
-                    <button onClick={getPrevComics}>Prev</button>
+                    <div className={styles.buttonsBlock}>
+                        <button onClick={getPrevComics}>Prev</button>
+                        <button onClick={getRandomComics}>Random</button>
+                        <button onClick={getNextComics}>Next</button>
+                    </div>
                 </div>
             )}
         </>

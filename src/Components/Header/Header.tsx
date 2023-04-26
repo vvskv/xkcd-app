@@ -13,13 +13,6 @@ export default function Header() {
                 <Link to={routes.TRANSLATOR} className={styles.link}>
                     Translator
                 </Link>
-
-                {/* <span className={styles.link}>
-                    <Link to={routes.MAIN} className={styles.link}>Comics</Link>
-                </span>
-                <span className={styles.link}>
-                    <Link to={routes.TRANSLATOR}>Translator</Link>
-                </span> */}
             </div>
         </header>
     );
