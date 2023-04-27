@@ -9,6 +9,7 @@ import {
 import { getComics } from '../../store/comics/request';
 import getJsonId, { comicsRequest, statusRequest } from '../../utils/getJsonId';
 import styles from './MainPage.module.scss';
+import { setRequestsStatus } from '../../store/requests';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function MainPage() {
     useEffect(() => {
         console.log('First dispatch');
         dispatch(getComics(getJsonId(comicsRequest.Current)));
+        // dispatch(setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: true } }));
     }, []);
 
     const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {

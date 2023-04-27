@@ -20,17 +20,18 @@ export function setCurrentComics(id: number) {
     currentComics = id;
 }
 // add current id comics to local storage
-const dispatch = useDispatch();
+// const dispatch = useDispatch();
 
-useEffect(() => {
-    if (currentComics === 1) {
-        dispatch(setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: false } }));
-    } else if (currentComics === maxId) {
-        dispatch(setRequestsStatus({ reqNext: { status: false }, reqPrev: { status: true } }));
-    }
-}, []);
 export default function getJsonId(req: comicsRequest) {
     let jsonId: string;
+    // setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: true } });
+    // useEffect(() => {
+    //     if (currentComics === 1) {
+    //         dispatch(setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: false } }));
+    //     } else if (currentComics === maxId) {
+    //         dispatch(setRequestsStatus({ reqNext: { status: false }, reqPrev: { status: true } }));
+    //     }
+    // }, []);
 
     switch (req) {
         case comicsRequest.Random:
