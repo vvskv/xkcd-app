@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux';
+import { setRequestsStatus } from '../store/requests';
+import { useEffect } from 'react';
+
 export enum comicsRequest {
     Random = 'RANDOM',
     Prev = 'PREV',
@@ -16,8 +20,18 @@ export function setCurrentComics(id: number) {
     currentComics = id;
 }
 // add current id comics to local storage
+const dispatch = useDispatch();
+
+useEffect(() => {
+    if (currentComics === 1) {
+        dispatch(setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: false } }));
+    } else if (currentComics === maxId) {
+        dispatch(setRequestsStatus({ reqNext: { status: false }, reqPrev: { status: true } }));
+    }
+}, []);
 export default function getJsonId(req: comicsRequest) {
     let jsonId: string;
+
     switch (req) {
         case comicsRequest.Random:
             currentComics = Math.ceil(Math.random() * maxId);
