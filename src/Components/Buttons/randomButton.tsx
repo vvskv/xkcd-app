@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getComics } from '../../store/comics/request';
-import getJsonId, { comicsRequest } from '../../utils/getJsonId';
+import getJsonId, { comicsRequest } from '../../utils/xkcdApi';
 
 export default function randomButton() {
     const dispatch = useDispatch();

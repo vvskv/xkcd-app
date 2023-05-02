@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { networkInstance } from '../../network';
-import { currentComics, maxId, setCurrentComics, setMaxId } from '../../utils/getJsonId';
+import { currentComics, maxId, setCurrentComics, setMaxId } from '../../utils/xkcdApi';
 
 export const getComics = createAsyncThunk(
     '/comics',

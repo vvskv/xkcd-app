@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     getComicsIsLoading,
@@ -7,10 +7,11 @@ import {
     getComicsIsError,
 } from '../../store/comics/selector';
 import { getComics } from '../../store/comics/request';
-import getJsonId, { comicsRequest, statusRequest } from '../../utils/getJsonId';
+import getJsonId, { comicsRequest, statusPrevRequest } from '../../utils/xkcdApi';
 import styles from './MainPage.module.scss';
-import { setRequestsStatus } from '../../store/requests';
 import randomButton from '../../Components/Buttons/randomButton';
+import nextButton from '../../Components/Buttons/nextButton';
+import { getNextReqtStatus } from '../../store/nextRequest/selector';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -18,26 +19,21 @@ export default function MainPage() {
     const isSuccess = useSelector(getComicsIsSuccess);
     const isError = useSelector(getComicsIsError);
     const isLoading = useSelector(getComicsIsLoading);
+    // const reqNextStatus = useSelector(getNextReqtStatus);
 
     useEffect(() => {
         console.log('First dispatch');
         dispatch(getComics(getJsonId(comicsRequest.Current)));
-        // dispatch(setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: true } }));
     }, []);
 
-    const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {
-        e.preventDefault();
-        dispatch(getComics(getJsonId(comicsRequest.Random)));
-    };
-    const getNextComics = (e: React.MouseEvent<HTMLElement>) => {
-        e.preventDefault();
-        const jsonId = getJsonId(comicsRequest.Next);
-        if (statusRequest) dispatch(getComics(jsonId));
-    };
+    // const getNextComics = (e: React.MouseEvent<HTMLElement>) => {
+    //     e.preventDefault();
+    //     const jsonId = getJsonId(comicsRequest.Next);
+    // };
     const getPrevComics = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         const jsonId = getJsonId(comicsRequest.Prev);
-        if (statusRequest) dispatch(getComics(jsonId));
+        if (statusPrevRequest) dispatch(getComics(jsonId));
     };
 
     return (
@@ -52,7 +48,8 @@ export default function MainPage() {
                         <button onClick={getPrevComics}>Prev</button>
                         {/* <button onClick={getRandomComics}>Random</button> */}
                         {randomButton()}
-                        <button onClick={getNextComics}>Next</button>
+                        {/* <button onClick={getNextComics}>Next</button> */}
+                        {/* {nextButton(true)} */}
                     </div>
                 </div>
             )}

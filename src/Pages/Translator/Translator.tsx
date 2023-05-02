@@ -1,5 +1,13 @@
 import React from 'react';
 
 export default function Translator() {
-    return <div>Translator</div>;
+    return (
+        <div>
+            <form action="submit">
+                <input type="text" name="" id="" />
+                <input type="text" name="" id="" />
+                <button type="submit">Перевод</button>
+            </form>
+        </div>
+    );
 }
