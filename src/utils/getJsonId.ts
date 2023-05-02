@@ -20,10 +20,10 @@ export function setCurrentComics(id: number) {
     currentComics = id;
 }
 // add current id comics to local storage
-// const dispatch = useDispatch();
 
 export default function getJsonId(req: comicsRequest) {
     let jsonId: string;
+    
     // setRequestsStatus({ reqNext: { status: true }, reqPrev: { status: true } });
     // useEffect(() => {
     //     if (currentComics === 1) {
@@ -32,6 +32,7 @@ export default function getJsonId(req: comicsRequest) {
     //         dispatch(setRequestsStatus({ reqNext: { status: false }, reqPrev: { status: true } }));
     //     }
     // }, []);
+    // const dispatch = useDispatch();
 
     switch (req) {
         case comicsRequest.Random:

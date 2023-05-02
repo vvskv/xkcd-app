@@ -1,0 +1,14 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { getComics } from '../../store/comics/request';
+import getJsonId, { comicsRequest } from '../../utils/getJsonId';
+
+export default function randomButton() {
+    const dispatch = useDispatch();
+
+    const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault();
+        dispatch(getComics(getJsonId(comicsRequest.Random)));
+    };
+    return <button onClick={getRandomComics}>Random</button>;
+}

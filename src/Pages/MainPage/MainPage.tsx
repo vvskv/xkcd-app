@@ -10,6 +10,7 @@ import { getComics } from '../../store/comics/request';
 import getJsonId, { comicsRequest, statusRequest } from '../../utils/getJsonId';
 import styles from './MainPage.module.scss';
 import { setRequestsStatus } from '../../store/requests';
+import randomButton from '../../Components/Buttons/randomButton';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -49,7 +50,8 @@ export default function MainPage() {
                     <img src={comics.img} alt="" />
                     <div className={styles.buttonsBlock}>
                         <button onClick={getPrevComics}>Prev</button>
-                        <button onClick={getRandomComics}>Random</button>
+                        {/* <button onClick={getRandomComics}>Random</button> */}
+                        {randomButton()}
                         <button onClick={getNextComics}>Next</button>
                     </div>
                 </div>
