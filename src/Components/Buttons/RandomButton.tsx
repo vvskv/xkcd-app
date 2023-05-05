@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { getComics } from '../../store/comics/request';
 import getJsonId, { comicsRequest } from '../../utils/xkcdApi';
 
-export default function randomButton() {
+export default function RandomButton() {
     const dispatch = useDispatch();
 
     const getRandomComics = (e: React.MouseEvent<HTMLElement>) => {

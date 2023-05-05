@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { comicsNameReducer, comicsReducer } from './comics';
-import { nextRequestStatusNameReducer, nextRequestStatusReducer } from './nextRequest';
+import { currentNumberNameReducer, currentNumberReducer } from './currentNumber';
 
 export const store = configureStore({
     reducer: {
         [comicsNameReducer]: comicsReducer,
-        [nextRequestStatusNameReducer]: nextRequestStatusReducer,
+        [currentNumberNameReducer]: currentNumberReducer,
     },
     devTools: true,
 });

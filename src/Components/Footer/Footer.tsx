@@ -3,6 +3,8 @@ import styles from './Footer.module.scss';
 import { currentComics } from '../../utils/xkcdApi';
 
 export default function Footer() {
+    console.log(currentComics);
+
     return (
         <div className={styles.footer}>
             <p>{currentComics}</p>

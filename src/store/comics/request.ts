@@ -9,7 +9,7 @@ export const getComics = createAsyncThunk(
             const responce = await networkInstance.get(`${jsonId}/info.0.json`);
             if (maxId === 0) setMaxId(responce.data.num);
             if (currentComics === 0) setCurrentComics(responce.data.num);
-            console.log(responce.data.num);
+            // console.log(responce.data.num);
 
             return responce.data;
         } catch (error) {
