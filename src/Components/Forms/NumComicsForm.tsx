@@ -1,28 +1,51 @@
 import React, { useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getComics } from '../../store/comics/request';
+import getJsonId from '../../utils/xkcdApi';
+import styles from './NumComicsForm.module.scss';
+import {
+    getComicsSelector,
+    getComicsIsSuccess,
+    getComicsIsError,
+    getComicsIsLoading,
+} from '../../store/comics/selector';
 
 export default function NumComicsForm() {
     const dispatch = useDispatch();
     const [comicsNum, setComicsNum] = useState(0);
+    const comics = useSelector(getComicsSelector);
+    const isSuccess = useSelector(getComicsIsSuccess);
+    const isError = useSelector(getComicsIsError);
+    const isLoading = useSelector(getComicsIsLoading);
 
     const getComicsForNum = (e: React.MouseEvent<HTMLElement>) => {
-        dispatch(getComics(String(comicsNum)));
+        const jsonId = getJsonId(comicsNum);
+        dispatch(getComics(jsonId));
+        // dispatch(getComics(String(comicsNum)));
     };
-    // const handleChangeFieldForm = useCallback(
-    //     (fieldName: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    //         setComicsNum((prevValues) => ({ ...prevValues, [fieldName]: e.target.value }));
-    //     },
-    //     [],
-    //   );
     const handlerForm = (event: React.ChangeEvent<HTMLInputElement>) => {
         const number = Number(event.target.value);
         setComicsNum(number);
     };
+    // setComicsNum(comics.num);
+    // if (isSuccess) setComicsNum(comics.num);
+    console.log(comicsNum);
+
     return (
         <>
-            <input type="number" name="numOfComics" id="" onChange={handlerForm} />
-            <button onClick={getComicsForNum}>Show</button>
+            <div className={styles.wrap}>
+                <input
+                    type="number"
+                    name="numOfComics"
+                    id=""
+                    onChange={handlerForm}
+                    // value={isSuccess && comics && comics.num}
+                    value={comicsNum}
+                    // onFocus={(value = '')}
+                    // onFocus={(this.value = 0)}
+                />
+                <button onClick={getComicsForNum}>Show</button>
+            </div>
         </>
     );
 }

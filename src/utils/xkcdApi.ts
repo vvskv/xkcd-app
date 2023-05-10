@@ -22,28 +22,31 @@ export function setCurrentComics(id: number) {
 }
 // add current id comics to local storage
 
-export default function getJsonId(req: comicsRequest) {
-    const dispatch = useDispatch();
-    dispatch(setCurrentNumber({ num: currentComics }));
+export default function getJsonId(req: comicsRequest | number) {
     let jsonId: string;
-    switch (req) {
-        case comicsRequest.Random:
-            currentComics = Math.ceil(Math.random() * maxId);
-            jsonId = String(currentComics);
-            break;
-        case comicsRequest.Prev:
-            currentComics -= 1;
-            jsonId = String(currentComics);
-            break;
-        case comicsRequest.Next:
-            currentComics += 1;
-            jsonId = String(currentComics);
-            break;
-        case comicsRequest.Current:
-            jsonId = !currentComics ? '' : String(currentComics);
-            break;
+    if (typeof req !== 'number') {
+        switch (req) {
+            case comicsRequest.Random:
+                currentComics = Math.ceil(Math.random() * maxId);
+                jsonId = String(currentComics);
+                break;
+            case comicsRequest.Prev:
+                currentComics -= 1;
+                jsonId = String(currentComics);
+                break;
+            case comicsRequest.Next:
+                currentComics += 1;
+                jsonId = String(currentComics);
+                break;
+            case comicsRequest.Current:
+                jsonId = !currentComics ? '' : String(currentComics);
+                break;
+        }
+    } else {
+        currentComics = req;
+        jsonId = String(req);
     }
-    // console.log(currentComics);
+    console.log(currentComics);
 
     if (currentComics === 1) {
         statusPrevRequest = false;
@@ -53,7 +56,6 @@ export default function getJsonId(req: comicsRequest) {
         statusNextRequest = true;
         statusPrevRequest = true;
     }
-    // console.log(statusNextRequest);
 
     return jsonId;
 }

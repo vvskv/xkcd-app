@@ -1,0 +1,32 @@
+.wrap {
+    display: flex;
+    // flex-direction: column;
+    gap: 1rem;
+    input {
+        outline: none;
+        border: 1px solid black;
+        padding: 1em 1em;
+        font-size: 16px;
+        font-weight: 600;
+        width: 5em;
+        -moz-appearance: textfield;
+        -webkit-appearance: textfield;
+        appearance: textfield;
+        border-radius: 0px;
+        text-align: center;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        display: none;
+    }
+    input:focus {
+        background-color: rgb(230, 230, 230);
+        // border-radius: 0px;
+    }
+    button {
+        padding: 0 3em;
+        border: 2px solid black;
+        // font-weight: 600;
+        font-size: 16px;
+    }
+}

@@ -7,11 +7,7 @@ import {
     getComicsIsError,
 } from '../../store/comics/selector';
 import { getComics } from '../../store/comics/request';
-import getJsonId, {
-    comicsRequest,
-    statusPrevRequest,
-    statusNextRequest,
-} from '../../utils/xkcdApi';
+import getJsonId, { comicsRequest } from '../../utils/xkcdApi';
 import styles from './MainPage.module.scss';
 import RandomButton from '../../Components/Buttons/RandomButton';
 import NextButton from '../../Components/Buttons/NextButton';
