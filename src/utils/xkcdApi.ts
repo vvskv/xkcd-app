@@ -23,6 +23,7 @@ export function setCurrentComics(id: number) {
 // add current id comics to local storage
 
 export default function getJsonId(req: comicsRequest | number) {
+    currentComics = Number(localStorage.getItem('currentID'));
     let jsonId: string;
     if (typeof req !== 'number') {
         switch (req) {

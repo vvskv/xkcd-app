@@ -18,10 +18,10 @@ export default function Footer() {
 
     return (
         <div className={styles.footer}>
+            <p>Current comics ID:</p>
             {isError && <span>Error</span>}
             {isLoading && <span>Loading...</span>}
             {isSuccess && comics && <span>{comics.num}</span>}
-            <p>All right reserved</p>
         </div>
     );
 }

@@ -7,9 +7,10 @@ export const getComics = createAsyncThunk(
     async (jsonId: string, { rejectWithValue }) => {
         try {
             const responce = await networkInstance.get(`${jsonId}/info.0.json`);
+
             if (maxId === 0) setMaxId(responce.data.num);
             if (currentComics === 0) setCurrentComics(responce.data.num);
-            // console.log(responce.data.num);
+            localStorage.setItem('currentID', String(responce.data.num));
 
             return responce.data;
         } catch (error) {
