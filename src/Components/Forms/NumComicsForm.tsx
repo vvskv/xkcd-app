@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComics } from '../../store/comics/request';
 import getJsonId from '../../utils/xkcdApi';
@@ -27,6 +27,12 @@ export default function NumComicsForm() {
         const number = Number(event.target.value);
         setComicsNum(number);
     };
+    const clearForm = () => {
+        setComicsNum(0);
+    };
+    // useEffect(() => {
+    //     if (isSuccess) setComicsNum(comics.num);
+    // });
     // setComicsNum(comics.num);
     // if (isSuccess) setComicsNum(comics.num);
     console.log(comicsNum);
@@ -42,7 +48,7 @@ export default function NumComicsForm() {
                     // value={isSuccess && comics && comics.num}
                     value={comicsNum}
                     // onFocus={(value = '')}
-                    // onFocus={(this.value = 0)}
+                    onClick={clearForm}
                 />
                 <button onClick={getComicsForNum}>Show</button>
             </div>
