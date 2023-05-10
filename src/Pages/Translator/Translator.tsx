@@ -5,7 +5,6 @@ export default function Translator() {
         <div>
             <form action="submit">
                 <input type="text" name="" id="" />
-                <input type="text" name="" id="" />
                 <button type="submit">Перевод</button>
             </form>
         </div>
