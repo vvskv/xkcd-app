@@ -3,8 +3,8 @@ import { TState } from '../configureStore';
 
 const getTranslate = (state: TState) => state.text;
 
-export const getTranslateText = createSelector(getTranslate, ({ output }) => output);
-export const getTranslateIsSuccess = createSelector(getTranslate, ({ status }) => status.isSuccess);
+export const getTranslateText = createSelector(getTranslate, ({ output }) => output.data);
+export const getTranslateIsSuccess = createSelector(getTranslate, ({ output }) => output.isSuccess);
 
 // const getComicsState = (state: TState) => state.comics;
 

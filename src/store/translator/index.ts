@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import { postTranslateText } from './request';
 
 interface ITranslateText {
-    output: {};
-    status: {
+    output: {
+        data: Object;
         isSuccess: boolean;
         isLoading: boolean;
         isError: boolean;
@@ -11,8 +11,8 @@ interface ITranslateText {
 }
 
 const initialState: ITranslateText = {
-    output: {},
-    status: {
+    output: {
+        data: {},
         isSuccess: false,
         isLoading: false,
         isError: false,
@@ -27,20 +27,31 @@ const slice = createSlice({
         builder.addCase(postTranslateText.pending, (state) => {
             return {
                 ...state,
-                status: { isLoading: true, isSuccess: false, isError: false },
+                output: { ...state.output, isLoading: true, isSuccess: false, isError: false },
             };
         });
         builder.addCase(postTranslateText.fulfilled, (state, { payload }) => {
             return {
                 ...state,
-                output: payload,
-                status: { isLoading: false, isSuccess: true, isError: false },
+                output: {
+                    ...state.output,
+                    isLoading: false,
+                    isSuccess: true,
+                    isError: false,
+                    data: payload,
+                },
             };
         });
         builder.addCase(postTranslateText.rejected, (state) => {
             return {
                 ...state,
-                status: { isLoading: false, isSuccess: false, isError: true },
+                output: {
+                    ...state.output,
+                    isLoading: false,
+                    isSuccess: false,
+                    isError: true,
+                    data: {},
+                },
             };
         });
     },
