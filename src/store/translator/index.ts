@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { postTranslateText } from './request';
 
 interface ITranslateText {
-    output: [];
+    output: {};
     status: {
         isSuccess: boolean;
         isLoading: boolean;
@@ -11,7 +11,7 @@ interface ITranslateText {
 }
 
 const initialState: ITranslateText = {
-    output: [],
+    output: {},
     status: {
         isSuccess: false,
         isLoading: false,
