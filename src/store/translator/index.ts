@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getComics } from './request';
+import { postTranslateText } from './request';
 
 interface ITranslateText {
-    source: [];
     output: [];
     status: {
         isSuccess: boolean;
@@ -12,7 +11,6 @@ interface ITranslateText {
 }
 
 const initialState: ITranslateText = {
-    source: [],
     output: [],
     status: {
         isSuccess: false,
@@ -26,37 +24,26 @@ const slice = createSlice({
     initialState,
     reducers: {},
     extraReducers(builder) {
-        builder.addCase(getComics.pending, (state) => {
+        builder.addCase(postTranslateText.pending, (state) => {
             return {
                 ...state,
-                comics: { ...state.comics, isLoading: true, isSuccess: false, isError: false },
+                status: { isLoading: true, isSuccess: false, isError: false },
             };
         });
-        builder.addCase(getComics.fulfilled, (state, { payload }) => {
+        builder.addCase(postTranslateText.fulfilled, (state, { payload }) => {
             return {
                 ...state,
-                comics: {
-                    ...state.comics,
-                    isLoading: false,
-                    isSuccess: true,
-                    isError: false,
-                    data: payload,
-                },
+                output: payload,
+                status: { isLoading: false, isSuccess: true, isError: false },
             };
         });
-        builder.addCase(getComics.rejected, (state) => {
+        builder.addCase(postTranslateText.rejected, (state) => {
             return {
                 ...state,
-                comics: {
-                    ...state.comics,
-                    isLoading: false,
-                    isSuccess: false,
-                    isError: true,
-                    data: null,
-                },
+                status: { isLoading: false, isSuccess: false, isError: true },
             };
         });
     },
 });
 
-export const { reducer: comicsReducer, name: comicsNameReducer } = slice;
+export const { reducer: translateReducer, name: translateNameReducer } = slice;
