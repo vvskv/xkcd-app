@@ -7,7 +7,9 @@ import {
     getTranslateText,
 } from '../../store/translator/selector';
 import TranslateForm from '../../Components/Forms/TranslateForm';
-import { addText } from '../../store/text';
+import { addToArr } from '../../store/text';
+import { getArrSource } from '../../store/text/selector';
+import TranslatedList from '../../Components/Lists/TranslatedList';
 
 export default function Translator() {
     const dispatch = useDispatch();
@@ -15,10 +17,17 @@ export default function Translator() {
     const isSuccess = useSelector(getTranslateIsSuccess);
     const isLoading = useSelector(getTranslateIsLoading);
     const isError = useSelector(getTranslateIsError);
-    if (isSuccess) dispatch(addText({ data: [textResponce.data.translatedText] }));
+    const sourceArr = useSelector(getArrSource);
+
+    // if (isSuccess) {
+    //     dispatch(addToArr({ source: [], translated: [textResponce.data.translatedText] }));
+    // }
+    // console.log(sourceArr);
+
     return (
         <div>
             <TranslateForm />
+            <TranslatedList />
             <p>{isLoading && 'Loading...'}</p>
             <p>{isError && 'Error'}</p>
             <p>{isSuccess && textResponce.data.translatedText}</p>

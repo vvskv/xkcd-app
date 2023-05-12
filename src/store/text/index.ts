@@ -1,22 +1,28 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface IArrText {
-    data: Array<String>;
+    source: Array<String>;
+    translated: Array<String>;
 }
 
 const initialState: IArrText = {
-    data: [],
+    source: [],
+    translated: [],
 };
 
 const slice = createSlice({
     name: 'textArr',
     initialState,
     reducers: {
-        addText(state, { payload }: PayloadAction<IArrText>) {
-            return { ...state, ...payload };
+        addToArr(state, { payload }: PayloadAction<IArrText>) {
+            state.source = [...state.source, ...payload.source];
+            state.translated = [...state.translated, ...payload.translated];
         },
+        // addTranslated(state, { payload }: PayloadAction<IArrText>) {
+        //     state.translated = [...state.translated, ...payload.translated];
+        // },
     },
 });
 
 export const { reducer: arrTextReducer, name: arrTextNameReducer, actions } = slice;
-export const { addText } = actions;
+export const { addToArr } = actions;
