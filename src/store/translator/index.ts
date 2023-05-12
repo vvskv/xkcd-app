@@ -3,7 +3,7 @@ import { postTranslateText } from './request';
 
 interface ITranslateText {
     output: {
-        data: Object;
+        data: any;
         isSuccess: boolean;
         isLoading: boolean;
         isError: boolean;
@@ -12,7 +12,7 @@ interface ITranslateText {
 
 const initialState: ITranslateText = {
     output: {
-        data: {},
+        data: null,
         isSuccess: false,
         isLoading: false,
         isError: false,
@@ -50,7 +50,7 @@ const slice = createSlice({
                     isLoading: false,
                     isSuccess: false,
                     isError: true,
-                    data: {},
+                    data: null,
                 },
             };
         });
