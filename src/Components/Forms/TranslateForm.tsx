@@ -21,7 +21,7 @@ export default function TranslateForm() {
             <form action="submit">
                 <input type="text" name="" id="" onChange={handlerForm} />
                 <button type="submit" onClick={handlerButton}>
-                    Перевод
+                    Translate
                 </button>
             </form>
         </div>
