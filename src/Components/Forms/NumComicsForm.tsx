@@ -14,7 +14,7 @@ export default function NumComicsForm() {
     const handlerButton = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
         const jsonId = getJsonId(comicsNum);
-        if (comicsNum > 0 && comicsNum < maxId) dispatch(getComics(jsonId));
+        if (comicsNum > 0 && comicsNum <= maxId) dispatch(getComics(jsonId));
     };
     const handlerForm = (event: React.ChangeEvent<HTMLInputElement>) => {
         const number = Number(event.target.value);

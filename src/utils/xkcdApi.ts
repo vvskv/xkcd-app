@@ -49,8 +49,10 @@ export default function getJsonId(req: comicsRequest | number) {
 
     if (currentComics === 1) {
         statusPrevRequest = false;
+        statusNextRequest = true;
     } else if (currentComics === maxId) {
         statusNextRequest = false;
+        statusPrevRequest = true;
     } else {
         statusNextRequest = true;
         statusPrevRequest = true;

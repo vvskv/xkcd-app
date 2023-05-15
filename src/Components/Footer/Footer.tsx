@@ -7,6 +7,7 @@ import {
     getComicsIsSuccess,
     getComicsSelector,
 } from '../../store/comics/selector';
+import { maxId } from '../../utils/xkcdApi';
 
 export default function Footer() {
     const comics = useSelector(getComicsSelector);
@@ -20,6 +21,8 @@ export default function Footer() {
             {isError && <span>Error</span>}
             {isLoading && <span>Loading...</span>}
             {isSuccess && comics && <span>{comics.num}</span>}
+            <p>of</p>
+            <p>{maxId}</p>
         </div>
     );
 }
