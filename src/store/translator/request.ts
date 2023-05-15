@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { networkInstance, networkTranslate } from '../../network';
-import { currentComics, maxId, setCurrentComics, setMaxId } from '../../utils/xkcdApi';
+import { networkTranslate } from '../../network';
 
 export const postTranslateText = createAsyncThunk(
     '/translate',

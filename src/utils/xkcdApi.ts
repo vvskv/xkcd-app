@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { setCurrentNumber } from '../store/currentNumber';
 
 export enum comicsRequest {
     Random = 'RANDOM',
@@ -46,7 +45,7 @@ export default function getJsonId(req: comicsRequest | number) {
         currentComics = req;
         jsonId = String(req);
     }
-    console.log(currentComics);
+    // console.log(currentComics);
 
     if (currentComics === 1) {
         statusPrevRequest = false;
