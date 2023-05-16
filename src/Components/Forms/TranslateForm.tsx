@@ -3,6 +3,7 @@ import { postTranslateText } from '../../store/translatorRequest/request';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './TranslateForm.module.scss';
 import { addToArr } from '../../store/arrTranReq';
+import { getTranslateIsSuccess, getTranslateText } from '../../store/translatorRequest/selector';
 
 export default function TranslateForm() {
     const dispatch = useDispatch();

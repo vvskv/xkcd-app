@@ -1,25 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrSource, getArrTranslated } from '../../store/arrTranReq/selector';
 import { getTranslateIsSuccess, getTranslateText } from '../../store/translatorRequest/selector';
 import { addToArr } from '../../store/arrTranReq';
 import styles from './TranslatedList.module.scss';
 
+export function addWordToArr() {}
 export default function TranslatedList() {
     const dispatch = useDispatch();
     const sourceArr = useSelector(getArrSource);
     const translatedArr = useSelector(getArrTranslated);
     const textResponce = useSelector(getTranslateText);
     const isSuccess = useSelector(getTranslateIsSuccess);
+    const memoTextResponce = useMemo(() => textResponce, [textResponce]);
+
     useEffect(() => {
         if (isSuccess) {
-            console.log('!!!');
+            console.log('useEffect');
 
             dispatch(
                 addToArr({ source: [], translated: [String(textResponce.data.translatedText)] }),
             );
         }
-    }, [isSuccess]);
+    }, [memoTextResponce]);
     return (
         <div className={styles.wrap}>
             <div className={styles.list}>
