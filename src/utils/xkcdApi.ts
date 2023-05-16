@@ -8,7 +8,7 @@ export enum comicsRequest {
     Current = 'CURRENT',
 }
 
-export let maxId = 0;
+export let maxId = Number(localStorage.getItem('maxID'));
 export let currentComics = 0;
 export let statusNextRequest = true;
 export let statusPrevRequest = true;
@@ -38,7 +38,7 @@ export default function getJsonId(req: comicsRequest | number) {
                 jsonId = String(currentComics);
                 break;
             case comicsRequest.Current:
-                jsonId = !currentComics ? '' : String(currentComics);
+                jsonId = !currentComics ? 'latest' : String(currentComics);
                 break;
         }
     } else {

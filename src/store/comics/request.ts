@@ -1,14 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { networkInstance } from '../../network';
-import { currentComics, maxId, setCurrentComics, setMaxId } from '../../utils/xkcdApi';
+import { currentComics, setCurrentComics, setMaxId } from '../../utils/xkcdApi';
 
 export const getComics = createAsyncThunk(
     '/comics',
     async (jsonId: string, { rejectWithValue }) => {
         try {
-            const responce = await networkInstance.get(`${jsonId}/info.0.json`);
+            const responce = await networkInstance.get(`?comic=${jsonId}`);
 
-            if (maxId === 0) setMaxId(responce.data.num);
+            if (jsonId === 'latest') {
+                localStorage.setItem('maxID', String(responce.data.num));
+                // console.log('!!!');
+                setMaxId(responce.data.num);
+            }
+
             if (currentComics === 0) setCurrentComics(responce.data.num);
             localStorage.setItem('currentID', String(responce.data.num));
 

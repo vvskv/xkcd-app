@@ -22,7 +22,7 @@ export default function MainPage() {
     const isLoading = useSelector(getComicsIsLoading);
 
     useEffect(() => {
-        dispatch(getComics(getJsonId(comicsRequest.Current)));
+        if (!comics) dispatch(getComics(getJsonId(comicsRequest.Current)));
     }, []);
 
     return (
