@@ -5,24 +5,24 @@ import {
     getTranslateIsLoading,
     getTranslateIsSuccess,
     getTranslateText,
-} from '../../store/translatorRequest/selector';
+} from '../../store/translator/selector';
 import TranslateForm from '../../Components/Forms/TranslateForm';
 import styles from './Translator.module.scss';
 import TranslatedList from '../../Components/Lists/TranslatedList';
 
 export default function Translator() {
-    const textResponce = useSelector(getTranslateText);
-    const isSuccess = useSelector(getTranslateIsSuccess);
-    const isLoading = useSelector(getTranslateIsLoading);
-    const isError = useSelector(getTranslateIsError);
+    // const textResponce = useSelector(getTranslateText);
+    // const isSuccess = useSelector(getTranslateIsSuccess);
+    // const isLoading = useSelector(getTranslateIsLoading);
+    // const isError = useSelector(getTranslateIsError);
 
     return (
         <div className={styles.wrap}>
             <TranslateForm />
             <TranslatedList />
-            {isLoading && <span>Loading...</span>}
+            {/* {isLoading && <span>Loading...</span>}
             {isError && <span>Error</span>}
-            {isSuccess && <span>{textResponce.data.translatedText}</span>}
+            {isSuccess && <span>{textResponce.data.translatedText}</span>} */}
         </div>
     );
 }

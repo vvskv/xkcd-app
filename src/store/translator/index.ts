@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { postTranslateText } from './request';
 
 interface ITranslateText {
@@ -8,6 +8,7 @@ interface ITranslateText {
         isLoading: boolean;
         isError: boolean;
     };
+    arrTranResponce: Array<String>;
 }
 
 const initialState: ITranslateText = {
@@ -17,12 +18,17 @@ const initialState: ITranslateText = {
         isLoading: false,
         isError: false,
     },
+    arrTranResponce: [],
 };
 
 const slice = createSlice({
-    name: 'text',
+    name: 'translateRes',
     initialState,
-    reducers: {},
+    reducers: {
+        clearArrOfRes(state) {
+            state.arrTranResponce = [];
+        },
+    },
     extraReducers(builder) {
         builder.addCase(postTranslateText.pending, (state) => {
             return {
@@ -40,6 +46,7 @@ const slice = createSlice({
                     isError: false,
                     data: payload,
                 },
+                arrTranResponce: [...state.arrTranResponce, payload.data.translatedText],
             };
         });
         builder.addCase(postTranslateText.rejected, (state) => {
@@ -57,4 +64,5 @@ const slice = createSlice({
     },
 });
 
-export const { reducer: translateReducer, name: translateNameReducer } = slice;
+export const { reducer: translateReducer, name: translateNameReducer, actions } = slice;
+export const { clearArrOfRes } = actions;

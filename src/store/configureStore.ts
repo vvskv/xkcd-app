@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { comicsNameReducer, comicsReducer } from './comics';
-import { translateNameReducer, translateReducer } from './translatorRequest';
+import { translateNameReducer, translateReducer } from './translator';
 import { arrTextNameReducer, arrTextReducer } from './arrTranReq';
 
 export const store = configureStore({
