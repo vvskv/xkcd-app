@@ -1,7 +1,11 @@
 import React, { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getArrSource, getArrTranslated } from '../../store/arrTranReq/selector';
-import { getTranslateIsSuccess, getTranslateText } from '../../store/translatorRequest/selector';
+import {
+    getTranslateIsLoading,
+    getTranslateIsSuccess,
+    getTranslateText,
+} from '../../store/translatorRequest/selector';
 import { addToArr } from '../../store/arrTranReq';
 import styles from './TranslatedList.module.scss';
 
@@ -12,6 +16,7 @@ export default function TranslatedList() {
     const translatedArr = useSelector(getArrTranslated);
     const textResponce = useSelector(getTranslateText);
     const isSuccess = useSelector(getTranslateIsSuccess);
+    const isLoading = useSelector(getTranslateIsLoading);
     const memoTextResponce = useMemo(() => textResponce, [textResponce]);
 
     useEffect(() => {
@@ -22,7 +27,7 @@ export default function TranslatedList() {
                 addToArr({ source: [], translated: [String(textResponce.data.translatedText)] }),
             );
         }
-    }, [memoTextResponce]);
+    }, []);
     return (
         <div className={styles.wrap}>
             <div className={styles.list}>
