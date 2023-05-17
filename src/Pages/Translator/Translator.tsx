@@ -8,6 +8,7 @@ import {
 } from '../../store/translatorRequest/selector';
 import TranslateForm from '../../Components/Forms/TranslateForm';
 import styles from './Translator.module.scss';
+import TranslatedList from '../../Components/Lists/TranslatedList';
 
 export default function Translator() {
     const textResponce = useSelector(getTranslateText);
@@ -18,7 +19,7 @@ export default function Translator() {
     return (
         <div className={styles.wrap}>
             <TranslateForm />
-            {/* <TranslatedList /> */}
+            <TranslatedList />
             {isLoading && <span>Loading...</span>}
             {isError && <span>Error</span>}
             {isSuccess && <span>{textResponce.data.translatedText}</span>}

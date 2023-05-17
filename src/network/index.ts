@@ -11,4 +11,5 @@ export const networkTranslate = axios.create({
         'X-RapidAPI-Host': 'text-translator2.p.rapidapi.com',
     },
 });
+
 // http://translate.google.ru/translate_a/t?client=x&text={textToTranslate}&hl=en&sl=en&tl=ru
