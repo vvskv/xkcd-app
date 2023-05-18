@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-    getTranslateIsLoading,
-    getTranslateIsSuccess,
-    getTranslateText,
-    getTranslateArrResponce,
-} from '../../store/translator/selector';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getTranslateArrResponce } from '../../store/translator/selector';
 import styles from './TranslatedList.module.scss';
 import { getTranslateArrRequest } from '../../store/arrTranReq/selector';
 
@@ -13,8 +8,6 @@ export function addWordToArr() {}
 export default function TranslatedList() {
     const requestArr = useSelector(getTranslateArrRequest);
     const responceArr = useSelector(getTranslateArrResponce);
-    const isSuccess = useSelector(getTranslateIsSuccess);
-    const isLoading = useSelector(getTranslateIsLoading);
     const reqArrReverce = [...requestArr].reverse();
     const resArrReverce = [...responceArr].reverse();
 

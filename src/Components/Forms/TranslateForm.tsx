@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
 import { postTranslateText } from '../../store/translator/request';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from './TranslateForm.module.scss';
-import {
-    getTranslateArrResponce,
-    getTranslateIsLoading,
-    getTranslateIsSuccess,
-    getTranslateText,
-} from '../../store/translator/selector';
 import { addToArrOfReq, clearArrOfReq } from '../../store/arrTranReq';
-import { getTranslateArrRequest } from '../../store/arrTranReq/selector';
 import { clearArrOfRes } from '../../store/translator';
 
 export default function TranslateForm() {
     const dispatch = useDispatch();
     const [text, setText] = useState('');
-    const isSuccess = useSelector(getTranslateIsSuccess);
-    const isLoading = useSelector(getTranslateIsLoading);
 
     const handlerButton = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();

@@ -17,7 +17,6 @@ const slice = createSlice({
         },
         clearArrOfReq(state) {
             state.req = [];
-            // console.log('!!!');
         },
     },
 });
